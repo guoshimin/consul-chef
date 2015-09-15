@@ -4,8 +4,6 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-include_recipe 'docker'
-
 group 'consul' do
   gid '34221'
 end
@@ -16,19 +14,4 @@ user 'consul' do
   gid '34221'
   home '/consul'
   shell '/sbin/nologin'
-end
-
-directory '/apps' do
-  owner 'root'
-  group 'root'
-  mode '0755'
-end
-
-directory '/consul' do
-  owner 'consul'
-  group 'consul'
-  mode '0750'
-end
-
-docker_service 'default' do
 end

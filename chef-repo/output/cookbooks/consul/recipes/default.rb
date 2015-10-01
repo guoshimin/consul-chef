@@ -28,6 +28,18 @@ directory '/apps/consul' do
   mode '0750'
 end
 
+directory '/apps/consul/data' do
+  owner 'consul'
+  group 'consul'
+  mode '0750'
+end
+
+directory '/apps/consul/config' do
+  owner 'consul'
+  group 'consul'
+  mode '0750'
+end
+
 # Install package for aufs.
 package node['docker']['image']['extra']
 

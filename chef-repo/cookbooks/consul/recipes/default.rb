@@ -40,6 +40,9 @@ docker_image 'consul' do
   action :pull
 end
 
+file = File.open("/metadata/consul_agent_name", "r")
+node['name'] = file.read.strip
+
 template '/apps/consul/run-consul.sh' do
   source 'run-consul.sh.erb'
   owner 'consul'

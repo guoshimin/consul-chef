@@ -10,5 +10,5 @@ docker run -d \
   registry.dev.databricks.com/universe/consul \
   agent \
   -bootstrap-expect=3 \
-  -node=<%= node['name'] &> \
+  -node=<%= node['name'] %> \
   -config-file=/consul/config/server.json "$@"

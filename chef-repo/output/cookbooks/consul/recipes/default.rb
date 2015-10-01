@@ -35,6 +35,7 @@ docker_service 'default' do
   storage_driver 'aufs'
 end
 
-docker_image 'registry.dev.databricks.com/universe/console' do
+docker_image 'consul' do
+  repo 'registry.dev.databricks.com/universe/consul'
   action :pull
 end

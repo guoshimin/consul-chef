@@ -34,3 +34,7 @@ package node['docker']['image']['extra']
 docker_service 'default' do
   storage_driver 'aufs'
 end
+
+docker_image 'registry.dev.databricks.com/universe/console' do
+  action :pull
+end

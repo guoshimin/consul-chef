@@ -4,16 +4,14 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-include_recipe 'docker'
-
 group 'consul' do
-  gid '34221'
+  gid 34221
 end
 
 user 'consul' do
   comment 'User to run consul as'
-  uid '34221'
-  gid '34221'
+  uid 34221
+  gid 34221
   home '/consul'
   shell '/sbin/nologin'
 end

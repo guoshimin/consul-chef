@@ -49,3 +49,10 @@ template '/apps/consul/run-consul.sh' do
   group 'consul'
   mode '0775'
 end
+
+template '/apps/consul/config/server.json' do
+  source 'server.json.erb'
+  owner 'consul'
+  group 'consul'
+  mode '0660'
+end

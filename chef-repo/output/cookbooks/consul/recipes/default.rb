@@ -28,6 +28,9 @@ directory '/consul' do
   mode '0750'
 end
 
+# Install package for aufs.
+package node['docker']['image']['extra']
+
 docker_service 'default' do
   storage_driver 'aufs'
 end

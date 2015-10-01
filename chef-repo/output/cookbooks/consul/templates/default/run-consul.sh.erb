@@ -1,0 +1,14 @@
+#!/bin/bash
+
+docker run -d \
+  --net host \
+  --name consul \
+  --restart=always \
+  --entrypoint=/databricks/consul/consul \
+  -v /consul/data:/consul/data \
+  -v /consul/config:/consul/config \
+  registry.dev.databricks.com/universe/consul \
+  agent \
+  -bootstrap-expect=3 \
+  -node=<%= node['name'] &> \
+  -config-file=/consul/config/server.json "$@"

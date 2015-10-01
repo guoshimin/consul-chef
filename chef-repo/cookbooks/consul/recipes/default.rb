@@ -22,7 +22,7 @@ directory '/apps' do
   mode '0755'
 end
 
-directory '/consul' do
+directory '/apps/consul' do
   owner 'consul'
   group 'consul'
   mode '0750'
@@ -38,4 +38,11 @@ end
 docker_image 'consul' do
   repo 'registry.dev.databricks.com/universe/consul'
   action :pull
+end
+
+template '/apps/consul/run-consul.sh' do
+  source 'run-consul.sh.erb'
+  owner 'consul'
+  group 'consul'
+  mode '0775'
 end

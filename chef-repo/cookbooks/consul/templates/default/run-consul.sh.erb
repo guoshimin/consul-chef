@@ -5,8 +5,8 @@ docker run -d \
   --name consul \
   --restart=always \
   --log-driver=journald \
-  -v /consul/data:/consul/data \
-  -v /consul/config:/consul/config \
+  -v /apps/consul/data:/consul/data \
+  -v /apps/consul/config:/consul/config \
   -e CONSUL_GID=<%= node['consul']['gid'] %> \
   -e CONSUL_UID=<%= node['consul']['uid'] %> \
   registry.dev.databricks.com/shimin/consul:201510020941 \

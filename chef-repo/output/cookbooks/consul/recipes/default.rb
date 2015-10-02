@@ -47,6 +47,11 @@ docker_service 'default' do
   storage_driver 'aufs'
 end
 
+user 'ubuntu' do
+  gid 'docker'
+  action :modify
+end
+
 docker_image 'consul' do
   repo 'registry.dev.databricks.com/universe/consul'
   action :pull

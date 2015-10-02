@@ -49,9 +49,7 @@ end
 
 group 'docker'
 
-file '/var/run/docker.sock' do
-  group 'docker'
-end
+FileUtils.chown nil, 'docker', '/var/run/docker.sock'
 
 user 'ubuntu' do
   gid 'docker'

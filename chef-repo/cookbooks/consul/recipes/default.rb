@@ -47,14 +47,12 @@ docker_service 'default' do
   storage_driver 'aufs'
 end
 
-group 'docker'
+group 'docker' do
+  append true
+  members ['ubuntu']
+end
 
 FileUtils.chown nil, 'docker', '/var/run/docker.sock'
-
-user 'ubuntu' do
-  gid 'docker'
-  action :modify
-end
 
 docker_image 'consul' do
   repo 'registry.dev.databricks.com/universe/consul'
@@ -64,10 +62,10 @@ end
 file = File.open("/metadata/consul_agent_name", "r")
 node.default['name'] = file.read.strip
 
-template '/apps/consul/run-consul.sh' do
+template '/home/ubuntu/run-consul.sh' do
   source 'run-consul.sh.erb'
-  owner 'consul'
-  group 'consul'
+  owner 'ubuntu'
+  group 'ubuntu'
   mode '0775'
 end
 

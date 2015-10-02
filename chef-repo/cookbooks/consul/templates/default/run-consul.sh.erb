@@ -4,10 +4,11 @@ docker run -d \
   --net host \
   --name consul \
   --restart=always \
-  --entrypoint=/databricks/consul/consul \
+  --log-driver=journald \
   -v /consul/data:/consul/data \
   -v /consul/config:/consul/config \
   registry.dev.databricks.com/universe/consul \
+  sudo -u consul /databricks/consul/consul \
   agent \
   -bootstrap-expect=3 \
   -node=<%= node['name'] %> \

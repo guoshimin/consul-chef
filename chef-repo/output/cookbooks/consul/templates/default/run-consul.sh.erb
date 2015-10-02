@@ -14,4 +14,4 @@ docker run -d \
   agent \
   -bootstrap-expect=3 \
   -node=<%= node['name'] %> \
-  -config-file=/consul/config/server.json "$@"
+  -config-dir=/consul/config

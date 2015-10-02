@@ -4,6 +4,12 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
+directory '/apps' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
 group 'consul' do
   gid node['consul']['gid']
 end
@@ -12,14 +18,8 @@ user 'consul' do
   comment 'User to run consul as'
   uid node['consul']['uid']
   gid 'consul'
-  home '/consul'
+  home '/apps/consul'
   shell '/sbin/nologin'
-end
-
-directory '/apps' do
-  owner 'root'
-  group 'root'
-  mode '0755'
 end
 
 directory '/apps/consul' do
@@ -74,4 +74,11 @@ template '/apps/consul/config/server.json' do
   owner 'consul'
   group 'consul'
   mode '0660'
+end
+
+template '/home/ubuntu/consul-cli.sh' do
+  source 'consul-cli.sh.erb'
+  owner 'ubuntu'
+  group 'ubuntu'
+  mode '0775'
 end

@@ -9,7 +9,7 @@ docker run -d \
   -v /apps/consul/config:/consul/config \
   -e CONSUL_GID=<%= node['consul']['gid'] %> \
   -e CONSUL_UID=<%= node['consul']['uid'] %> \
-  registry.dev.databricks.com/shimin/consul:201510020941 \
+  <%= node['consul']['image']['tag'] %> \
   /runonce.sh exec sudo -u consul /databricks/consul/consul \
   agent \
   -bootstrap-expect=3 \

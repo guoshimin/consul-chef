@@ -7,8 +7,10 @@ docker run -d \
   --log-driver=journald \
   -v /consul/data:/consul/data \
   -v /consul/config:/consul/config \
-  registry.dev.databricks.com/universe/consul \
-  sudo -u consul /databricks/consul/consul \
+  -e CONSUL_GID=<%= node['consul']['gid'] %> \
+  -e CONSUL_UID=<%= node['consul']['uid'] %> \
+  registry.dev.databricks.com/shimin/consul:201510020941 \
+  /runonce.sh exec sudo -u consul /databricks/consul/consul \
   agent \
   -bootstrap-expect=3 \
   -node=<%= node['name'] %> \

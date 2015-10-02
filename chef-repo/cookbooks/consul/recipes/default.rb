@@ -5,13 +5,13 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
 group 'consul' do
-  gid 34221
+  gid node['consul']['gid']
 end
 
 user 'consul' do
   comment 'User to run consul as'
-  uid 34221
-  gid 34221
+  uid node['consul']['uid']
+  gid 'consul'
   home '/consul'
   shell '/sbin/nologin'
 end

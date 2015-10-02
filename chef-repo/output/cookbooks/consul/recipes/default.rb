@@ -47,6 +47,12 @@ docker_service 'default' do
   storage_driver 'aufs'
 end
 
+group 'docker'
+
+file '/var/run/docker.sock' do
+  group 'docker'
+end
+
 user 'ubuntu' do
   gid 'docker'
   action :modify

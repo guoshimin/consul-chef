@@ -50,9 +50,15 @@ end
 group 'docker' do
   append true
   members ['ubuntu']
+  action :create
 end
 
-FileUtils.chown nil, 'docker', '/var/run/docker.sock'
+ruby_block 'chown docker.sock' do
+  block do
+    FileUtils.chown nil, 'docker', '/var/run/docker.sock'
+  end
+  action :run
+end
 
 docker_image 'consul' do
   repo 'registry.dev.databricks.com/universe/consul'

@@ -10,8 +10,8 @@ docker run -d \
   -e CONSUL_GID=<%= node['consul']['gid'] %> \
   -e CONSUL_UID=<%= node['consul']['uid'] %> \
   <%= node['consul']['image']['tag'] %> \
-  /create_user_once.sh && exec sudo -u consul /databricks/consul/consul \
+  sh -c "/create_user_once.sh && exec sudo -u consul /databricks/consul/consul \
   agent \
   -bootstrap-expect=3 \
   -node=<%= node['name'] %> \
-  -config-dir=/consul/config
+  -config-dir=/consul/config"
